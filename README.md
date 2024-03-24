@@ -21,10 +21,10 @@ Request 5 - POST Genarates URL for forgot password /users/forgot-password
    Raw Data - Not required
      
 Request 6 - POST Resets the password /users/reset-password
-  Raw Data - 
+  Raw Data - Not required
   
 Request 7 - POST Set user password /users/verify-account
-  Raw Data - 
+  Raw Data - Not required
 
 Collection Product View Action
 
