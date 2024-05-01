@@ -1,0 +1,373 @@
+{
+	"info": {
+		"_postman_id": "ec6d8418-3f1a-45e9-a607-ccd786a5a68e",
+		"name": "Shopper Wishlist",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "33110825"
+	},
+	"item": [
+		{
+			"name": "Get all the products from wishlist",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": {
+						"token": "{{jwtToken}}"
+					}
+				},
+				"method": "GET",
+				"header": [],
+				"url": "{{BaseURL}}/shoppers/{{shopperId}}/wishlist"
+			},
+			"response": [
+				{
+					"name": "Got all the products from wishlist",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": "{{BaseURL}}/shoppers/{{shopperId}}/wishlist"
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Server",
+							"value": "nginx"
+						},
+						{
+							"key": "Date",
+							"value": "Tue, 19 Mar 2024 15:01:58 GMT"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Vary",
+							"value": "Accept-Encoding"
+						},
+						{
+							"key": "Vary",
+							"value": "Origin"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Method"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Headers"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "1; mode=block"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, no-store, max-age=0, must-revalidate"
+						},
+						{
+							"key": "Pragma",
+							"value": "no-cache"
+						},
+						{
+							"key": "Expires",
+							"value": "0"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "Content-Encoding",
+							"value": "gzip"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"statusCode\": 200,\n    \"message\": \"Success\",\n    \"data\": [\n        {\n            \"itemId\": 121101,\n            \"productId\": 5,\n            \"quantity\": 0,\n            \"productName\": \"SAMSUNG Galaxy Z Flip4 \",\n            \"imageLink\": \"https://rukminim1.flixcart.com/image/312/312/xif0q/mobile/e/y/a/-original-imagheq8cekajtu8.jpeg?q=70\",\n            \"price\": 89999,\n            \"productLink\": \"/products/5\"\n        },\n        {\n            \"itemId\": 121102,\n            \"productId\": 31,\n            \"quantity\": 0,\n            \"productName\": \"HP 15s- 11th Gen Intel Core i5 -8GB RAM/512GB SSD/32GB Intel Optane Memory 15.6inch(39.6cm)\",\n            \"imageLink\": \"https://m.media-amazon.com/images/I/91HuLUsVUDL._SX679_.jpg\",\n            \"price\": 94460,\n            \"productLink\": \"/products/31\"\n        }\n    ]\n}"
+				}
+			]
+		},
+		{
+			"name": "Add a product to the wishlist",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": {
+						"token": "{{jwtToken}}"
+					}
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"productId\": 31,\r\n  \"quantity\": 2\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "{{BaseURL}}/shoppers/{{shopperId}}/wishlist"
+			},
+			"response": [
+				{
+					"name": "Added a product to wishlist (Id 5)",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"productId\": 5,\r\n  \"quantity\": 2\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{BaseURL}}/shoppers/{{shopperId}}/wishlist"
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Server",
+							"value": "nginx"
+						},
+						{
+							"key": "Date",
+							"value": "Tue, 19 Mar 2024 15:00:18 GMT"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Vary",
+							"value": "Origin"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Method"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Headers"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "1; mode=block"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, no-store, max-age=0, must-revalidate"
+						},
+						{
+							"key": "Pragma",
+							"value": "no-cache"
+						},
+						{
+							"key": "Expires",
+							"value": "0"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"statusCode\": 201,\n    \"message\": \"Created\",\n    \"data\": {\n        \"itemId\": 121101,\n        \"productId\": 5,\n        \"quantity\": 2,\n        \"productName\": \"SAMSUNG Galaxy Z Flip4 \",\n        \"imageLink\": \"https://rukminim1.flixcart.com/image/312/312/xif0q/mobile/e/y/a/-original-imagheq8cekajtu8.jpeg?q=70\",\n        \"price\": 0,\n        \"productLink\": \"/products/5\"\n    }\n}"
+				},
+				{
+					"name": "Added a product to wishlist (Id 31)",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"productId\": 31,\r\n  \"quantity\": 2\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{BaseURL}}/shoppers/{{shopperId}}/wishlist"
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Server",
+							"value": "nginx"
+						},
+						{
+							"key": "Date",
+							"value": "Tue, 19 Mar 2024 15:01:18 GMT"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Vary",
+							"value": "Origin"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Method"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Headers"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "1; mode=block"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, no-store, max-age=0, must-revalidate"
+						},
+						{
+							"key": "Pragma",
+							"value": "no-cache"
+						},
+						{
+							"key": "Expires",
+							"value": "0"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"statusCode\": 201,\n    \"message\": \"Created\",\n    \"data\": {\n        \"itemId\": 121102,\n        \"productId\": 31,\n        \"quantity\": 2,\n        \"productName\": \"HP 15s- 11th Gen Intel Core i5 -8GB RAM/512GB SSD/32GB Intel Optane Memory 15.6inch(39.6cm)\",\n        \"imageLink\": \"https://m.media-amazon.com/images/I/91HuLUsVUDL._SX679_.jpg\",\n        \"price\": 0,\n        \"productLink\": \"/products/31\"\n    }\n}"
+				}
+			]
+		},
+		{
+			"name": "Delete a product from wishlist",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": {
+						"token": "{{jwtToken}}"
+					}
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": "{{BaseURL}}/shoppers/{{shopperId}}/wishlist/{{productId}}"
+			},
+			"response": [
+				{
+					"name": "Deleted A product from wishlist",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [],
+						"url": "{{BaseURL}}/shoppers/{{shopperId}}/wishlist/{{productId}}"
+					},
+					"status": "No Content",
+					"code": 204,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Server",
+							"value": "nginx"
+						},
+						{
+							"key": "Date",
+							"value": "Tue, 19 Mar 2024 15:06:37 GMT"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Vary",
+							"value": "Origin"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Method"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Headers"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "1; mode=block"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, no-store, max-age=0, must-revalidate"
+						},
+						{
+							"key": "Pragma",
+							"value": "no-cache"
+						},
+						{
+							"key": "Expires",
+							"value": "0"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						}
+					],
+					"cookie": [],
+					"body": null
+				}
+			]
+		}
+	]
+}

@@ -1,0 +1,456 @@
+{
+	"info": {
+		"_postman_id": "26861365-6000-4e1d-a790-cb57cef93738",
+		"name": "Shopper Profile Cards",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "33110825"
+	},
+	"item": [
+		{
+			"name": "Save the card data",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": {
+						"token": "{{jwtToken}}"
+					}
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"cvv\": \"{{CVV}}\",\r\n  \"expiryDate\": \"{{ExpiryDate}}\",\r\n  \"id\": {{CardId}},\r\n  \"nameOnCard\": \"Yash\",\r\n  \"number\": \"{{CardNumber}}\",\r\n  \"type\": \"DEBIT\",\r\n  \"userId\": {{shopperId}}\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "{{BaseURL}}/cards"
+			},
+			"response": [
+				{
+					"name": "Saved the card data",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"cvv\": \"{{CVV}}\",\r\n  \"expiryDate\": \"{{ExpiryDate}}\",\r\n  \"id\": {{CardId}},\r\n  \"nameOnCard\": \"Yash\",\r\n  \"number\": \"{{CardNumber}}\",\r\n  \"type\": \"DEBIT\",\r\n  \"userId\": {{shopperId}}\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{BaseURL}}/cards"
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Server",
+							"value": "nginx"
+						},
+						{
+							"key": "Date",
+							"value": "Fri, 22 Mar 2024 12:43:52 GMT"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Vary",
+							"value": "Origin"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Method"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Headers"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "1; mode=block"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, no-store, max-age=0, must-revalidate"
+						},
+						{
+							"key": "Pragma",
+							"value": "no-cache"
+						},
+						{
+							"key": "Expires",
+							"value": "0"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"statusCode\": 201,\n    \"message\": \"Created\",\n    \"data\": {\n        \"id\": 3248,\n        \"number\": \"7445789612368089\",\n        \"cvv\": \"611\",\n        \"nameOnCard\": \"Yash\",\n        \"expiryDate\": \"3/29\",\n        \"type\": \"DEBIT\",\n        \"userId\": 56180\n    }\n}"
+				}
+			]
+		},
+		{
+			"name": "get the card data based on type",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": {
+						"token": "{{jwtToken}}"
+					}
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{BaseURL}}/cards/{{shopperId}}?type=DEBIT",
+					"host": [
+						"{{BaseURL}}"
+					],
+					"path": [
+						"cards",
+						"{{shopperId}}"
+					],
+					"query": [
+						{
+							"key": "type",
+							"value": "DEBIT"
+						}
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Got the card data based on type",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BaseURL}}/cards/{{shopperId}}?type=DEBIT",
+							"host": [
+								"{{BaseURL}}"
+							],
+							"path": [
+								"cards",
+								"{{shopperId}}"
+							],
+							"query": [
+								{
+									"key": "type",
+									"value": "DEBIT"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Server",
+							"value": "nginx"
+						},
+						{
+							"key": "Date",
+							"value": "Fri, 22 Mar 2024 12:46:49 GMT"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Vary",
+							"value": "Accept-Encoding"
+						},
+						{
+							"key": "Vary",
+							"value": "Origin"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Method"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Headers"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "1; mode=block"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, no-store, max-age=0, must-revalidate"
+						},
+						{
+							"key": "Pragma",
+							"value": "no-cache"
+						},
+						{
+							"key": "Expires",
+							"value": "0"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "Content-Encoding",
+							"value": "gzip"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"statusCode\": 200,\n    \"message\": \"Success\",\n    \"data\": [\n        {\n            \"id\": 3248,\n            \"number\": \"7445789612368089\",\n            \"cvv\": \"611\",\n            \"nameOnCard\": \"Yash\",\n            \"expiryDate\": \"3/29\",\n            \"type\": \"DEBIT\",\n            \"userId\": 56180\n        }\n    ]\n}"
+				}
+			]
+		},
+		{
+			"name": "Returns all the shoppers cards",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{BaseURL}}/shoppers/cards?cardType=DEBIT&shopperId={{shopperId}}",
+					"host": [
+						"{{BaseURL}}"
+					],
+					"path": [
+						"shoppers",
+						"cards"
+					],
+					"query": [
+						{
+							"key": "cardType",
+							"value": "DEBIT"
+						},
+						{
+							"key": "shopperId",
+							"value": "{{shopperId}}"
+						}
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Returned all the shopper cards",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BaseURL}}/shoppers/cards?cardType=DEBIT&shopperId={{shopperId}}",
+							"host": [
+								"{{BaseURL}}"
+							],
+							"path": [
+								"shoppers",
+								"cards"
+							],
+							"query": [
+								{
+									"key": "cardType",
+									"value": "DEBIT"
+								},
+								{
+									"key": "shopperId",
+									"value": "{{shopperId}}"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Server",
+							"value": "nginx"
+						},
+						{
+							"key": "Date",
+							"value": "Fri, 22 Mar 2024 12:49:50 GMT"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Vary",
+							"value": "Accept-Encoding"
+						},
+						{
+							"key": "Vary",
+							"value": "Origin"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Method"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Headers"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "1; mode=block"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, no-store, max-age=0, must-revalidate"
+						},
+						{
+							"key": "Pragma",
+							"value": "no-cache"
+						},
+						{
+							"key": "Expires",
+							"value": "0"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "Content-Encoding",
+							"value": "gzip"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"statusCode\": 200,\n    \"message\": \"Success\",\n    \"data\": [\n        {\n            \"cardId\": 6886,\n            \"shopperId\": 56180,\n            \"email\": \"Carissa.Barton@hotmail.com\",\n            \"number\": \"7445789612368089\",\n            \"cardType\": \"DEBIT\",\n            \"cvv\": 611,\n            \"pin\": 3174,\n            \"expiryDate\": \"3/29\",\n            \"nameOnCard\": \"Yash\",\n            \"bankName\": \"IDHC\",\n            \"balance\": 10100000\n        }\n    ]\n}"
+				}
+			]
+		},
+		{
+			"name": "Delete card data based on id",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": "{{BaseURL}}/cards/{{CardId}}"
+			},
+			"response": [
+				{
+					"name": "404 NOT FOUND",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [],
+						"url": "{{BaseURL}}/cards/{{CardId}}"
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Server",
+							"value": "nginx"
+						},
+						{
+							"key": "Date",
+							"value": "Fri, 22 Mar 2024 12:51:15 GMT"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Vary",
+							"value": "Accept-Encoding"
+						},
+						{
+							"key": "Vary",
+							"value": "Origin"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Method"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Headers"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "1; mode=block"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, no-store, max-age=0, must-revalidate"
+						},
+						{
+							"key": "Pragma",
+							"value": "no-cache"
+						},
+						{
+							"key": "Expires",
+							"value": "0"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "Content-Encoding",
+							"value": "gzip"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"statusCode\": 404,\n    \"message\": \"NOT_FOUND\",\n    \"data\": \"Card Id 6886 does not found\"\n}"
+				}
+			]
+		}
+	]
+}

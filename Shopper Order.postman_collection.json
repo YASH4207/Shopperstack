@@ -1,0 +1,376 @@
+{
+	"info": {
+		"_postman_id": "fbbd9ac6-fdba-454d-8ddb-24935b97c009",
+		"name": "Shopper Order",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "33110825"
+	},
+	"item": [
+		{
+			"name": "Display order history",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": {
+						"token": "{{jwtToken}}"
+					}
+				},
+				"method": "GET",
+				"header": [],
+				"url": "{{BaseURL}}/shoppers/{{shopperId}}/orders"
+			},
+			"response": [
+				{
+					"name": "Displayed order history",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": "{{BaseURL}}/shoppers/{{shopperId}}/orders"
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Server",
+							"value": "nginx"
+						},
+						{
+							"key": "Date",
+							"value": "Tue, 19 Mar 2024 15:33:46 GMT"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Vary",
+							"value": "Accept-Encoding"
+						},
+						{
+							"key": "Vary",
+							"value": "Origin"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Method"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Headers"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "1; mode=block"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, no-store, max-age=0, must-revalidate"
+						},
+						{
+							"key": "Pragma",
+							"value": "no-cache"
+						},
+						{
+							"key": "Expires",
+							"value": "0"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "Content-Encoding",
+							"value": "gzip"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"statusCode\": 200,\n    \"message\": \"Success\",\n    \"data\": null\n}"
+				}
+			]
+		},
+		{
+			"name": "Place order from cart",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"// Test to fectch addressId and store it into global variable\r",
+							"pm.test(\"orderId value fetched and saved in orderId\", function () {\r",
+							"    pm.globals.set(\"orderId\", pm.response.json().data.orderId);\r",
+							"})"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": {
+						"token": "{{jwtToken}}"
+					}
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"address\": {\r\n    \"addressId\": {{addressId}},\r\n    \"buildingInfo\": \"string\",\r\n    \"city\": \"Pune\",\r\n    \"country\": \"India\",\r\n    \"landmark\": \"Behind Sai kitchen\",\r\n    \"name\": \"Yash\",\r\n    \"phone\": \"7620214815\",\r\n    \"pincode\": \"{{pincode}}\",\r\n    \"state\": \"Maharashtra\",\r\n    \"streetInfo\": \"DMart road\",\r\n    \"type\": \"Home\"\r\n  },\r\n  \"paymentMode\": \"COD\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "{{BaseURL}}/shoppers/{{shopperId}}/orders"
+			},
+			"response": [
+				{
+					"name": "Placed order from cart",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"address\": {\r\n    \"addressId\": {{addressId}},\r\n    \"buildingInfo\": \"string\",\r\n    \"city\": \"Pune\",\r\n    \"country\": \"India\",\r\n    \"landmark\": \"Behind Sai kitchen\",\r\n    \"name\": \"Yash\",\r\n    \"phone\": \"7620214815\",\r\n    \"pincode\": \"{{pincode}}\",\r\n    \"state\": \"Maharashtra\",\r\n    \"streetInfo\": \"DMart road\",\r\n    \"type\": \"Home\"\r\n  },\r\n  \"paymentMode\": \"COD\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{BaseURL}}/shoppers/{{shopperId}}/orders"
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Server",
+							"value": "nginx"
+						},
+						{
+							"key": "Date",
+							"value": "Tue, 19 Mar 2024 15:43:21 GMT"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Vary",
+							"value": "Origin"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Method"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Headers"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "1; mode=block"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, no-store, max-age=0, must-revalidate"
+						},
+						{
+							"key": "Pragma",
+							"value": "no-cache"
+						},
+						{
+							"key": "Expires",
+							"value": "0"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"statusCode\": 201,\n    \"message\": \"Created\",\n    \"data\": {\n        \"orderId\": 15178,\n        \"shopperId\": 55294,\n        \"orderStatus\": \"PLACED\",\n        \"address\": {\n            \"addressId\": 32917,\n            \"name\": \"Yash\",\n            \"type\": \"Home\",\n            \"buildingInfo\": \"23\",\n            \"streetInfo\": \"Dmart Road\",\n            \"landmark\": \"Behind Sai mess\",\n            \"city\": \"Pune\",\n            \"state\": \"432102\",\n            \"country\": \"India\",\n            \"pincode\": \"432102\",\n            \"phone\": \"7620214815\"\n        },\n        \"orderedItems\": [\n            {\n                \"itemId\": 121127,\n                \"productId\": 31,\n                \"quantity\": 5,\n                \"productName\": \"HP 15s- 11th Gen Intel Core i5 -8GB RAM/512GB SSD/32GB Intel Optane Memory 15.6inch(39.6cm)\",\n                \"imageLink\": \"https://m.media-amazon.com/images/I/91HuLUsVUDL._SX679_.jpg\",\n                \"price\": 0,\n                \"productLink\": \"/products/31\"\n            }\n        ],\n        \"orderDate\": \"2024-03-19T21:13:21.763353\",\n        \"lastModifiedDate\": \"2024-03-19T21:13:21.763354\",\n        \"deliveredDate\": null,\n        \"actualPrice\": 0,\n        \"discountPrice\": 0,\n        \"totalPrice\": 0,\n        \"paymentMode\": \"COD\",\n        \"transactionId\": 0\n    }\n}"
+				}
+			]
+		},
+		{
+			"name": "Update order status",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": {
+						"token": "{{jwtToken}}"
+					}
+				},
+				"method": "PATCH",
+				"header": [],
+				"url": {
+					"raw": "{{BaseURL}}/shoppers/{{shopperId}}/orders/{{orderId}}?status=DELIVERED",
+					"host": [
+						"{{BaseURL}}"
+					],
+					"path": [
+						"shoppers",
+						"{{shopperId}}",
+						"orders",
+						"{{orderId}}"
+					],
+					"query": [
+						{
+							"key": "status",
+							"value": "DELIVERED"
+						}
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Updated order status",
+					"originalRequest": {
+						"method": "PATCH",
+						"header": [],
+						"url": {
+							"raw": "{{BaseURL}}/shoppers/{{shopperId}}/orders/{{orderId}}?status=PLACED",
+							"host": [
+								"{{BaseURL}}"
+							],
+							"path": [
+								"shoppers",
+								"{{shopperId}}",
+								"orders",
+								"{{orderId}}"
+							],
+							"query": [
+								{
+									"key": "status",
+									"value": "PLACED"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Server",
+							"value": "nginx"
+						},
+						{
+							"key": "Date",
+							"value": "Tue, 19 Mar 2024 15:47:35 GMT"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Vary",
+							"value": "Accept-Encoding"
+						},
+						{
+							"key": "Vary",
+							"value": "Origin"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Method"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Headers"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "1; mode=block"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, no-store, max-age=0, must-revalidate"
+						},
+						{
+							"key": "Pragma",
+							"value": "no-cache"
+						},
+						{
+							"key": "Expires",
+							"value": "0"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "Content-Encoding",
+							"value": "gzip"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"statusCode\": 200,\n    \"message\": \"Success\",\n    \"data\": {\n        \"orderId\": 15178,\n        \"shopperId\": 55294,\n        \"orderStatus\": \"PLACED\",\n        \"address\": {\n            \"addressId\": 32917,\n            \"name\": \"Yash\",\n            \"type\": \"Home\",\n            \"buildingInfo\": \"23\",\n            \"streetInfo\": \"Dmart Road\",\n            \"landmark\": \"Behind Sai mess\",\n            \"city\": \"Pune\",\n            \"state\": \"432102\",\n            \"country\": \"India\",\n            \"pincode\": \"432102\",\n            \"phone\": \"7620214815\"\n        },\n        \"orderedItems\": [\n            {\n                \"itemId\": 121127,\n                \"productId\": 31,\n                \"quantity\": 5,\n                \"productName\": \"HP 15s- 11th Gen Intel Core i5 -8GB RAM/512GB SSD/32GB Intel Optane Memory 15.6inch(39.6cm)\",\n                \"imageLink\": \"https://m.media-amazon.com/images/I/91HuLUsVUDL._SX679_.jpg\",\n                \"price\": 0,\n                \"productLink\": \"/products/31\"\n            }\n        ],\n        \"orderDate\": \"2024-03-19T21:13:21.763\",\n        \"lastModifiedDate\": \"2024-03-19T21:17:35.857311\",\n        \"deliveredDate\": null,\n        \"actualPrice\": 0,\n        \"discountPrice\": 0,\n        \"totalPrice\": 0,\n        \"paymentMode\": \"COD\",\n        \"transactionId\": 0\n    }\n}"
+				}
+			]
+		},
+		{
+			"name": "Generate Invoice copy",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": {
+						"token": "{{jwtToken}}"
+					}
+				},
+				"method": "GET",
+				"header": [],
+				"url": "{{BaseURL}}/shoppers/{{shopperId}}/orders/{{orderId}}/invoice"
+			},
+			"response": []
+		}
+	]
+}

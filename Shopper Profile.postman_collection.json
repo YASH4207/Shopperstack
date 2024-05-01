@@ -1,0 +1,924 @@
+{
+	"info": {
+		"_postman_id": "21d08005-e194-4f33-83dd-fcb8f961cb27",
+		"name": "Shopper Profile",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "33110825"
+	},
+	"item": [
+		{
+			"name": "Register as a shopper",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"// Test to fectch email and store it into global variable\r",
+							"pm.test(\"email value fetched and saved in email\", function () {\r",
+							"    pm.globals.set(\"email\", pm.response.json().data.email);\r",
+							"})"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"city\": \"Pune\",\r\n  \"country\": \"India\",\r\n  \"email\": \"{{$randomEmail}}\",\r\n  \"firstName\": \"Yash\",\r\n  \"gender\": \"MALE\",\r\n  \"lastName\": \"Darne\",\r\n  \"password\": \"Yash@1888\",\r\n  \"phone\": 7620214815,\r\n  \"state\": \"Maharashtra\",\r\n  \"zoneId\": \"ALPHA\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "{{BaseURL}}/shoppers"
+			},
+			"response": [
+				{
+					"name": "Registered as a shopper",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"city\": \"Pune\",\r\n  \"country\": \"India\",\r\n  \"email\": \"loteapurva10@gmail.com\",\r\n  \"firstName\": \"Yash\",\r\n  \"gender\": \"MALE\",\r\n  \"lastName\": \"Darne\",\r\n  \"password\": \"Yash@1888\",\r\n  \"phone\": 7620214815,\r\n  \"state\": \"Maharashtra\",\r\n  \"zoneId\": \"ALPHA\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{BaseURL}}/shoppers"
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Server",
+							"value": "nginx"
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 18 Mar 2024 14:29:18 GMT"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Vary",
+							"value": "Origin"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Method"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Headers"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "1; mode=block"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, no-store, max-age=0, must-revalidate"
+						},
+						{
+							"key": "Pragma",
+							"value": "no-cache"
+						},
+						{
+							"key": "Expires",
+							"value": "0"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"statusCode\": 201,\n    \"message\": \"Created\",\n    \"data\": {\n        \"userId\": 55096,\n        \"email\": \"loteapurva10@gmail.com\",\n        \"role\": \"SHOPPER\",\n        \"status\": \"ACTIVE\",\n        \"createdDateTime\": null,\n        \"firstName\": \"Yash\",\n        \"lastName\": \"Darne\",\n        \"city\": \"Banglore\",\n        \"state\": \"Karnataka\",\n        \"country\": \"India\",\n        \"zoneId\": \"ALPHA\",\n        \"imageId\": null,\n        \"jwtToken\": null\n    }\n}"
+				}
+			]
+		},
+		{
+			"name": "Shopper Login",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"//(7)Test to set a global veriable and set fetched data to global veriable\r",
+							"pm.test(\"Value fetched\", function(){\r",
+							"    pm.globals.set(\"jwtToken\", pm.response.json().data.jwtToken);    \r",
+							"    pm.globals.set(\"shopperId\", pm.response.json().data.userId);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"email\": \"{{email}}\",\r\n  \"password\": \"Yash@1888\",\r\n  \"role\": \"SHOPPER\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "{{BaseURL}}/users/login"
+			},
+			"response": [
+				{
+					"name": "Shopper Logged in",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"email\": \"ydarne8@gmail.com\",\r\n  \"password\": \"Yash@1888\",\r\n  \"role\": \"SHOPPER\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{BaseURL}}/users/login"
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Server",
+							"value": "nginx"
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 18 Mar 2024 10:41:44 GMT"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Vary",
+							"value": "Accept-Encoding"
+						},
+						{
+							"key": "Vary",
+							"value": "Origin"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Method"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Headers"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "1; mode=block"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, no-store, max-age=0, must-revalidate"
+						},
+						{
+							"key": "Pragma",
+							"value": "no-cache"
+						},
+						{
+							"key": "Expires",
+							"value": "0"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "Content-Encoding",
+							"value": "gzip"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"statusCode\": 200,\n    \"message\": \"OK\",\n    \"data\": {\n        \"userId\": 55002,\n        \"email\": \"ydarne8@gmail.com\",\n        \"role\": \"SHOPPER\",\n        \"status\": \"ACTIVE\",\n        \"createdDateTime\": null,\n        \"firstName\": \"Yash\",\n        \"lastName\": \"Darne\",\n        \"city\": \"Banglore\",\n        \"state\": \"Karnataka\",\n        \"country\": \"India\",\n        \"zoneId\": \"ALPHA\",\n        \"imageId\": null,\n        \"jwtToken\": \"eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ5ZGFybmU4QGdtYWlsLmNvbSBTSE9QUEVSIiwiZXhwIjoxNzEwNzk0NTA0LCJpYXQiOjE3MTA3NTg1MDR9.sp-fts-FIdMVBoEafllmD-hy7KgBtHnf8H45lV4M5Vc\"\n    }\n}"
+				},
+				{
+					"name": "Shopper Login 55096",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"email\": \"loteapurva10@gmail.com\",\r\n  \"password\": \"Yash@1888\",\r\n  \"role\": \"SHOPPER\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{BaseURL}}/users/login"
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Server",
+							"value": "nginx"
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 18 Mar 2024 14:33:27 GMT"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Vary",
+							"value": "Accept-Encoding"
+						},
+						{
+							"key": "Vary",
+							"value": "Origin"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Method"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Headers"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "1; mode=block"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, no-store, max-age=0, must-revalidate"
+						},
+						{
+							"key": "Pragma",
+							"value": "no-cache"
+						},
+						{
+							"key": "Expires",
+							"value": "0"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "Content-Encoding",
+							"value": "gzip"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"statusCode\": 200,\n    \"message\": \"OK\",\n    \"data\": {\n        \"userId\": 55096,\n        \"email\": \"loteapurva10@gmail.com\",\n        \"role\": \"SHOPPER\",\n        \"status\": \"ACTIVE\",\n        \"createdDateTime\": null,\n        \"firstName\": \"Yash\",\n        \"lastName\": \"Darne\",\n        \"city\": \"Banglore\",\n        \"state\": \"Karnataka\",\n        \"country\": \"India\",\n        \"zoneId\": \"ALPHA\",\n        \"imageId\": null,\n        \"jwtToken\": \"eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJsb3RlYXB1cnZhMTBAZ21haWwuY29tIFNIT1BQRVIiLCJleHAiOjE3MTA4MDg0MDcsImlhdCI6MTcxMDc3MjQwN30._mPF8eLyOJD-MRc5DkGX52sTbJt5N28qYu3HNRbdHyQ\"\n    }\n}"
+				}
+			]
+		},
+		{
+			"name": "Find Shopper data by shoppers Id",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"// Test to fectch roel and store it into global variable\r",
+							"pm.test(\"set a variable\", function () {\r",
+							"    pm.globals.set(\"role\", pm.response.json().data.role);\r",
+							"})"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": {
+						"token": "{{jwtToken}}"
+					}
+				},
+				"method": "GET",
+				"header": [],
+				"url": "{{BaseURL}}/shoppers/{{shopperId}}"
+			},
+			"response": [
+				{
+					"name": "Found Shopper data by shoppers Id 55096",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": "{{BaseURL}}/shoppers/{{shopperId}}"
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Server",
+							"value": "nginx"
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 18 Mar 2024 14:38:40 GMT"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Vary",
+							"value": "Accept-Encoding"
+						},
+						{
+							"key": "Vary",
+							"value": "Origin"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Method"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Headers"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "1; mode=block"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, no-store, max-age=0, must-revalidate"
+						},
+						{
+							"key": "Pragma",
+							"value": "no-cache"
+						},
+						{
+							"key": "Expires",
+							"value": "0"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "Content-Encoding",
+							"value": "gzip"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"statusCode\": 200,\n    \"message\": \"Success\",\n    \"data\": {\n        \"userId\": 55096,\n        \"firstName\": \"Yash\",\n        \"lastName\": \"Darne\",\n        \"email\": \"loteapurva10@gmail.com\",\n        \"phone\": \"7620214815\",\n        \"password\": null,\n        \"role\": \"SHOPPER\",\n        \"gender\": \"MALE\",\n        \"status\": \"ACTIVE\",\n        \"token\": null,\n        \"dob\": null,\n        \"createdDateTime\": \"2024-03-18T19:59:18.659\",\n        \"zoneId\": \"ALPHA\",\n        \"city\": \"Banglore\",\n        \"state\": \"Karnataka\",\n        \"country\": \"India\",\n        \"imageId\": null,\n        \"addressList\": null,\n        \"cartList\": null,\n        \"wishList\": null,\n        \"shopperOrders\": null,\n        \"likes\": null,\n        \"jwtToken\": null\n    }\n}"
+				}
+			]
+		},
+		{
+			"name": "Update the shopper Details",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": {
+						"token": "{{jwtToken}}"
+					}
+				},
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"city\": \"Mumbai\",\r\n  \"country\": \"India\",\r\n  \"email\": \"{{email}}\",\r\n  \"firstName\": \"Yash\",\r\n  \"gender\": \"MALE\",\r\n  \"lastName\": \"Darne\",\r\n  \"password\": \"Yash@1888\",\r\n  \"phone\": 9545964207,\r\n  \"state\": \"Maharashtra\",\r\n  \"zoneId\": \"ALPHA\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "{{BaseURL}}/shoppers/{{shopperId}}"
+			},
+			"response": [
+				{
+					"name": "Updated the shopper Details 55096",
+					"originalRequest": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"city\": \"Mumbai\",\r\n  \"country\": \"India\",\r\n  \"email\": \"loteapurva10@gmail.com\",\r\n  \"firstName\": \"Apurva\",\r\n  \"gender\": \"FEMALE\",\r\n  \"lastName\": \"Lote\",\r\n  \"password\": \"Yash@1888\",\r\n  \"phone\": 9545964207,\r\n  \"state\": \"Maharashtra\",\r\n  \"zoneId\": \"ALPHA\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{BaseURL}}/shoppers/{{shopperId}}"
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Server",
+							"value": "nginx"
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 18 Mar 2024 14:44:09 GMT"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Vary",
+							"value": "Accept-Encoding"
+						},
+						{
+							"key": "Vary",
+							"value": "Origin"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Method"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Headers"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "1; mode=block"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, no-store, max-age=0, must-revalidate"
+						},
+						{
+							"key": "Pragma",
+							"value": "no-cache"
+						},
+						{
+							"key": "Expires",
+							"value": "0"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "Content-Encoding",
+							"value": "gzip"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"statusCode\": 200,\n    \"message\": \"Success\",\n    \"data\": {\n        \"userId\": 55096,\n        \"email\": \"loteapurva10@gmail.com\",\n        \"role\": \"SHOPPER\",\n        \"status\": \"ACTIVE\",\n        \"createdDateTime\": null,\n        \"firstName\": \"Apurva\",\n        \"lastName\": \"Lote\",\n        \"city\": \"Mumbai\",\n        \"state\": \"Maharashtra\",\n        \"country\": \"India\",\n        \"zoneId\": \"ALPHA\",\n        \"imageId\": null,\n        \"jwtToken\": null\n    }\n}"
+				}
+			]
+		},
+		{
+			"name": "Genarate URL for forgot password",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"//Test to to fetch userId and set it to shopperId\r",
+							"pm.test(\"VerifyToken value fetched and saved in VerifyToken\", function () {\r",
+							"    pm.collectionVariables.set(\"VerifyToken\", pm.response.json().data.token);\r",
+							"})\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "email",
+						"value": "{{email}}",
+						"type": "text"
+					},
+					{
+						"key": "role",
+						"value": "{{Role}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "{{BaseURL}}/users/forgot-password"
+			},
+			"response": [
+				{
+					"name": "Genarated URL for forgot password",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "email",
+								"value": "{{email}}",
+								"type": "text"
+							},
+							{
+								"key": "role",
+								"value": "{{Role}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{BaseURL}}/users/forgot-password"
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Server",
+							"value": "nginx"
+						},
+						{
+							"key": "Date",
+							"value": "Fri, 22 Mar 2024 04:32:41 GMT"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Vary",
+							"value": "Accept-Encoding"
+						},
+						{
+							"key": "Vary",
+							"value": "Origin"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Method"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Headers"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "1; mode=block"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, no-store, max-age=0, must-revalidate"
+						},
+						{
+							"key": "Pragma",
+							"value": "no-cache"
+						},
+						{
+							"key": "Expires",
+							"value": "0"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "Content-Encoding",
+							"value": "gzip"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"statusCode\": 200,\n    \"message\": \"Success\",\n    \"data\": {\n        \"message\": \"Verify from email\",\n        \"token\": \"y4uYV00YG2EFcRFh2tspqm4Z51wmdQdpXNvoiwJWV2jnt\"\n    }\n}"
+				}
+			]
+		},
+		{
+			"name": "Resets the password",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"password\" : \"Yash@18888\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "{{BaseURL}}/users/reset-password"
+			},
+			"response": []
+		},
+		{
+			"name": "Set user password",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "password",
+						"value": "{{Password}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{BaseURL}}/users/verify-account?token={{VerifyToken}}",
+					"host": [
+						"{{BaseURL}}"
+					],
+					"path": [
+						"users",
+						"verify-account"
+					],
+					"query": [
+						{
+							"key": "token",
+							"value": "{{VerifyToken}}"
+						}
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Setted user password",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "password",
+								"value": "{{Password}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{BaseURL}}/users/verify-account?token={{VerifyToken}}",
+							"host": [
+								"{{BaseURL}}"
+							],
+							"path": [
+								"users",
+								"verify-account"
+							],
+							"query": [
+								{
+									"key": "token",
+									"value": "{{VerifyToken}}"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Server",
+							"value": "nginx"
+						},
+						{
+							"key": "Date",
+							"value": "Fri, 22 Mar 2024 04:34:40 GMT"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Vary",
+							"value": "Accept-Encoding"
+						},
+						{
+							"key": "Vary",
+							"value": "Origin"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Method"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Headers"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "1; mode=block"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, no-store, max-age=0, must-revalidate"
+						},
+						{
+							"key": "Pragma",
+							"value": "no-cache"
+						},
+						{
+							"key": "Expires",
+							"value": "0"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "Content-Encoding",
+							"value": "gzip"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"statusCode\": 200,\n    \"message\": \"Success\",\n    \"data\": \"New password is created\"\n}"
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "VerifyToken",
+			"value": ""
+		}
+	]
+}
